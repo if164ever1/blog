@@ -22,27 +22,32 @@ class Post {
         $this->date = $date;
         $this->slug = $slug;
     }
-    
+
     public static function find($slug){
 /*         $path = resource_path("/../resources/posts/{$url}.html");
 
         if(!file_exists($path)){
             throw new ModelNotFoundException();
         }
-        
+
         return cache()->remember("posts/{$url}", 1200, fn() =>  file_get_contents($path)); */
 
-
-        $posts = static::all();
-
-        return $posts->firstWhere('slug', $slug);
+        return static::all()->firstWhere('slug', $slug);
+    }
 
 
+    public static function findOrFail($slug){
+        $post = static::find($slug);
 
+        if (! $post) {
+            throw new ModelNotFoundException(404);
+        }
+
+        return $post;
     }
 
     public static function all(){
-        /* 
+        /*
         $files = File::files(resource_path("posts"));
 
         $posts = collect($files)->
@@ -53,7 +58,7 @@ class Post {
                     $document->body(), $document->date, $document->slug);
                 })->sortByDesc('date');
         return $posts; */
- 
+
         return cache()->rememberForever('posts.all', function(){
                 return collect(File::files(resource_path("posts")))->
                     map(function($file){
