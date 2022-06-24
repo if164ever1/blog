@@ -5,7 +5,7 @@
 
    @foreach ($posts as $post)
         <article class="{{$loop->even ? 'foobar' : ''}}">
-            <a href="/posts/{{$post->slug}}">
+            <a href="/posts/{{$post->id}}">
                 <h1>
                     {{$post->title}}
                 </h1>

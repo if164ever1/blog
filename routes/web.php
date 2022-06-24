@@ -28,8 +28,8 @@ Route::get('/', function () {
 
 
 
-Route::get('/posts/{post}', function ($url) {
-    $postUrl = Post::findOrFail($url);
+Route::get('/posts/{post}', function ($id) {
+    $postUrl = Post::findOrFail($id);
     return view('post', [
         'post' => $postUrl
     ]);
