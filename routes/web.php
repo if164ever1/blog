@@ -5,6 +5,7 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Yaml\Yaml;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,11 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 */
 
 Route::get('/', function () {
+    \Illuminate\Support\Facades\DB::listen(function ($query){
+        logger($query->sql, $query->binding);
+    });
+
+
 
     $posts = Post::all();
 
@@ -36,6 +42,13 @@ Route::get('/posts/{post}', function (Post $post) {
 });
 //->where('post', '[A-z_\-]+');
 
+
+Route::get('/categories/{category:slug}', function (Category $category) {
+    // $postUrl = Post::findOrFail($post);
+     return view('posts', [
+         'posts' => $category->posts
+     ]);
+ });
 
 
 
