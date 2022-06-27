@@ -19,16 +19,18 @@ use App\Models\Category;
 */
 
 Route::get('/', function () {
+
+/*  For debugging write
     \Illuminate\Support\Facades\DB::listen(function ($query){
-        logger($query->sql, $query->binding);
-    });
+        logger($query->sql, $query->bindings);
+    }); */
 
 
 
-    $posts = Post::all();
+    //$posts = Post::all();
 
     return view("posts", [
-        'posts' => $posts
+        'posts' => Post::with('category')->get()
     ]);
 });
 
