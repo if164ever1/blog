@@ -10,9 +10,13 @@
                     {{$post->title}}
                 </h1>
             </a>
-            <div>
-                {{$post->excerpt}}
-            </div>
+                <!--{{$post->excerpt}}-->
+                <p>
+                   <a href="#">{{ $post->category->name }}</a>
+                </p>
+                <div>
+                    {{ $post->excerpt }}
+                </div>
         </article>
     @endforeach
 @endsection
