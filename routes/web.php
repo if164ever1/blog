@@ -28,10 +28,10 @@ Route::get('/', function () {
 
 
 
-Route::get('/posts/{post}', function ($id) {
-    $postUrl = Post::findOrFail($id);
+Route::get('/posts/{post}', function (Post $post) {
+   // $postUrl = Post::findOrFail($post);
     return view('post', [
-        'post' => $postUrl
+        'post' => $post
     ]);
 });
 //->where('post', '[A-z_\-]+');
