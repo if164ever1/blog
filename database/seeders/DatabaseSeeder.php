@@ -17,11 +17,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User    ::truncate();
-        Category::truncate();
-        Post    ::truncate();
+       /*  User     ::truncate();
+        Category    ::truncate();
+        Post        ::truncate();
+ */
 
-        $user = User::factory()->create();
+
+        $user = User::factory()->create([
+            'name' => "John Doe"
+        ]);
+        Post::factory(5)->create([
+            'user_id'=>$user->id
+        ]);
+
+        /* $user = User::factory()->create();
 
         $personal = Category::create([
              'name' => 'Personal',
@@ -64,7 +73,7 @@ class DatabaseSeeder extends Seeder
             'excerpt' => 'Lorem ipsum dollar sit amet.',
             'body' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'
          ]);
-
+ */
 
 
     }
