@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Category;
+use App\Models\Post;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,11 +17,41 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::truncate();
+        Category::truncate();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+
+        $user = User::factory()->create();
+
+
+
+
+        $personal = Category::create([
+             'name' => 'Personal',
+             'slug' => 'personal',
+         ]);
+
+        $family = Category::create([
+            'name' => 'Family',
+            'slug' => 'family',
+        ]);
+
+        $work = Category::create([
+             'name' => 'Work',
+             'slug' => 'work',
+         ]);
+
+/*          Post::create([
+
+            'title' => 'My family post',
+            'slug' => 'mypfamily-post',
+            'excerpt' => 'Lorem ipsum dollar sit amet.',
+            'body' => 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.'
+         ]);
+ */
+
+
+
+
     }
 }
