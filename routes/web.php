@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Symfony\Component\Yaml\Yaml;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use App\Models\Category;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,7 @@ Route::get('/', function () {
     //$posts = Post::all();
 
     return view("posts", [
-        'posts' => Post::latest()->with('category')->get()
+        'posts' => Post::latest()->get()
     ]);
 });
 
@@ -48,7 +49,15 @@ Route::get('/categories/{category:slug}', function (Category $category) {
      ]);
  });
 
+ Route::get('/authors/{author:username}', function (User $author) {
+    // $postUrl = Post::findOrFail($post);
 
+
+
+     return view('posts', [
+         'posts' => $author->posts
+     ]);
+ });
 
 
 
