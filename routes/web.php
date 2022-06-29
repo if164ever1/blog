@@ -33,7 +33,7 @@ Route::get('/', function () {
 
 
 
-Route::get('/posts/{post}', function (Post $post) {
+Route::get('/posts/{post:slug}', function (Post $post) {
    // $postUrl = Post::findOrFail($post);
     return view('post', [
         'post' => $post
@@ -51,9 +51,6 @@ Route::get('/categories/{category:slug}', function (Category $category) {
 
  Route::get('/authors/{author:username}', function (User $author) {
     // $postUrl = Post::findOrFail($post);
-
-
-
      return view('posts', [
          'posts' => $author->posts
      ]);
